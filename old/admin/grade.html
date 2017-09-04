@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <link href="../image/logo.png.ico" rel="shortcut icon"/>
+    <link rel="stylesheet" href="./css/style.css?1.0"/>
+</head>
+<body>
+<div class="top">
+    <div class="top-block">
+        <!--右侧导航栏-->
+        <div id="m_exit" class="top-block-right cur-hand mouse-on-red-off-white">退出系统</div>
+        <div id="m_home_page" class="top-block-right cur-hand mouse-on-green-off-white">网站首页</div>
+        <!--左侧导航栏-->
+        <div id="basic_config" class="top-block-left cur-hand mouse-on-green-off-white">基本设置</div>
+        <div id="manager_cache" class="top-block-left cur-hand mouse-on-green-off-white">缓存管理</div>
+    </div>
+</div>
+<div class="top-block">
+    <div class="left">
+        <div id="admin_add_grade" class="left-item cur-hand">添加年级</div>
+        <div id="admin_manage_grade" class="left-item cur-hand">管理年级</div>
+        <div id="admin_add_grade_item" class="left-item cur-hand">添加学期</div>
+        <div id="admin_manage_grade_item" class="left-item cur-hand">管理学期</div>
+        <div id="admin_add_chapter" class="left-item cur-hand">添加章目录</div>
+        <div id="admin_manage_chapter" class="left-item cur-hand">管理章目录</div>
+        <div id="admin_add_section" class="left-item cur-hand">添加节目录</div>
+        <div id="admin_manage_section" class="left-item cur-hand">管理节目录</div>
+        <div id="admin_add_exam" class="left-item cur-hand">添加考点</div>
+        <div id="admin_manage_exam" class="left-item cur-hand">管理考点</div>
+        <div id="admin_add_section_exam" class="left-item cur-hand">设置题型</div>
+        <div id="admin_manage_section_exam" class="left-item cur-hand">管理题型</div>
+        <div id="admin_manage_account" class="left-item cur-hand">账户管理</div>
+    </div>
+    <div class="main">
+        <div class="main-top">
+            添加年级
+        </div>
+        <div class="main-content">
+            <div id="question_id_2" style="margin-top: 40px;">
+                <table style="border: 1px solid #B7AEB4;width:100%;font-size:14px; margin-top:5px;border-collapse:separate; border-spacing:10px;"
+                       cellspacing="10"
+                       cellpadding="0">
+                    <tr valign="top" style="margin-top: 20px;height:35px;">
+                        <td style="width:70%;">
+                            <textarea
+                                    style="height: 30px;width: 99.3%;resize: none;overflow-y:auto;border: solid 1px;"
+                                    id="grade_name" name="grade_name"></textarea>
+                        </td>
+                    </tr>
+                </table>
+                <input type="submit"
+                       id="add_grade_btn"
+                       style="width: 100%; height: 35px;background: dodgerblue;color: white;border: none;margin-top: 10px;"
+                       class="cur-hand"
+                       value="添加年级"/>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<div class="loading-spinner" id="loading-spinner">
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+</div>
+<script type="application/javascript" src="js/jquery-1.11.1.min_044d0927.js"></script>
+<script src="js/common.js?1.1" type="text/javascript" charset="utf-8"></script>
+<script type="application/javascript" src="js/grade.js?1.0.1"></script>
+</html>

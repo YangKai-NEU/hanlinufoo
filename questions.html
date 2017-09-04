@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title></title>
+    <link href="image/logo.png.ico" rel="shortcut icon"/>
+    <link href="css/style.css?1.4.6" rel="stylesheet"/>
+    <link rel="stylesheet" href="./css/jquery.treeview.css?1.0.3"/>
+    <link rel="stylesheet" href="./css/screen.css?1.0.5"/>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+            tex2jax: { inlineMath: [ ["$", "$"], ["\\\\(","\\\\)"] ], displayMath: [ ["$$","$$"], ["\\[", "\\]"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno" },
+            TeX: {   linebreaks: { automatic:true }, noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } } },
+            messageStyle: "none"
+        });
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- ueditor -->
+    <script type="text/javascript" charset="utf-8" src="./ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./ueditor/ueditor.all.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./ueditor/lang/zh-cn/zh-cn.js"></script>
+
+    <script type="text/javascript" charset="utf-8" src="./ueditor/kityformula-plugin/addKityFormulaDialog.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./ueditor/kityformula-plugin/getKfContent.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./ueditor/kityformula-plugin/defaultFilterFix.js"></script>
+</head>
+<body>
+<div class="title_div">
+    <a class="header_text_left cur_hand question_header_left" href="./index.html" hidden>首页</a>
+    <a class="header_text_left question_header_left" hidden>|</a>
+    <a class="header_text_left cur_hand question_header_left" href="./login.html" hidden>登录</a>
+    <a class="header_text_right cur_hand question_header_right" id="exit_login" hidden><strong>退出登录</strong></a>
+    <a class="header_text_right question_header_right" hidden>|</a>
+    <a class="header_text_right cur_hand question_header_right" id="welcome" hidden><strong>欢迎您！</strong></a>
+</div>
+<hr style=" height:1px;border:none;border-top:1px solid #d7d7d7;"/>
+<div class="header_search">
+    <div class="header_search_div_img">
+        <img src="image/logo.png.png?1.0.0" id="logo" class="header_search_img cur_hand"/>
+    </div>
+    <div class="header_search_div_right">
+        <input type="text" title="输入您要查询的内容" class="header_search_input" placeholder="在此输入您要查询的内容"/>
+        <input type="text" title="查询" id="search_btn" class="header_search_button cur_hand" value="搜索" readonly/>
+    </div>
+</div>
+<div class="header_div" id="header_div">
+    <div class="header_div_middle">
+        <div class="left">
+            <img src="./image/three.png" class="three_img"/>
+        </div>
+        <div class="left_near cur_hand" id="left_near"><strong>初中数学</strong></div>
+        <div class="left_near" id="left_near_right">
+            <img src="./image/triangle.png" class="triangle"/>
+        </div>
+        <div class="select_subject_div" id="select_subject_div" hidden></div>
+        <div class="select_question">
+            <div class="select_question_item">
+                <img src="./image/lan.png" class="select_question_item_img">
+                <a class="select_question_item_text cur_hand" id="quiz_backet"><strong>试题篮</strong></a>
+            </div>
+            <div class="select_question_item">
+                <a class="select_question_item_question_text cur_hand"><strong>选择题</strong></a>
+                <a class="select_question_item_text cur_hand" id="choice_number"><strong>0</strong></a>
+            </div>
+            <div class="select_question_item">
+                <a class="select_question_item_question_text cur_hand"><strong>填空题</strong></a>
+                <a class="select_question_item_text cur_hand" id="fillin_number"><strong>0</strong></a>
+            </div>
+            <div class="select_question_item">
+                <a class="select_question_item_question_text cur_hand"><strong>解答题</strong></a>
+                <a class="select_question_item_text cur_hand" id="answer_number"><strong>0</strong></a>
+            </div>
+            <div class="select_question_item">
+                <img src="./image/delete.png?1.0.1" class="select_question_item_img">
+                <a class="select_question_item_question_text cur_hand" id="clear_quiz"><strong>清空</strong></a>
+            </div>
+            <div class="select_question_item_2" id="question_add_item" hidden>
+                <img src="./image/question_add.png" class="select_question_item_img"/>
+                <a class="select_question_item_question_text cur_hand"
+                   id="upload_new_question"><strong>添加试题</strong></a>
+            </div>
+            <div class="select_question_item" id="edit_exam_div" hidden>
+                <img src="./image/edit_exam.png" class="select_question_item_img">
+                <a class="select_question_item_question_text cur_hand" id="edit_exam"><strong>编辑题型</strong></a>
+            </div>
+            <div class="select_question_item" id="my_classes_div" hidden>
+                <img src="./image/classes.png?1.0.1" class="select_question_item_img">
+                <a class="select_question_item_question_text cur_hand" id="my_classes"><strong>我的班级</strong></a>
+                <div class="my_class_list" id="my_class_list" hidden>
+                    <div class="my_class_add cur_hand" id="my_class_add">添加新班级</div>
+                </div>
+            </div>
+            <div class="select_question_item" id="my_quizs_div" hidden>
+                <img src="./image/quiz_img.png?1.0.3" class="select_question_item_img">
+                <a class="select_question_item_question_text cur_hand" id="my_homeworks"><strong>管理套卷</strong></a>
+                <div class="my_homework_list" id="my_homework_list" hidden>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class=" main_content_div">
+    <div class="search_type" id="search_type">
+        <div class="search_type_name">
+            <strong>试题检索</strong>
+        </div>
+        <div class="search_type_item cur_hand" id="type_1">
+            按章节
+        </div>
+        <div class="search_type_item cur_hand" id="type_2">
+            按考点
+        </div>
+    </div>
+    <div class="left_div">
+        <ul id="browser" class="filetree">
+        </ul>
+    </div>
+    <div class="right_div">
+        <div class="right_div_title" id="right_div_title">
+            <div class="right_div_title_item">
+                <div class="right_div_title_item_name">
+                    <strong>学期</strong>
+                </div>
+                <div class="right_div_title_item_content" id="grade_item">
+                </div>
+            </div>
+            <hr style=" height:1px;border:none;border-top:1px solid #d7d7d7;margin-left: 20px;margin-right: 20px;"/>
+            <div class="right_div_title_item">
+                <div class="right_div_title_item_name">
+                    <strong>题型</strong>
+                </div>
+                <div class="right_div_title_item_content">
+                    <a id="question_type_1" class="right_div_title_item_content_name cur_hand">选择题</a>
+                    <a id="question_type_2" class="right_div_title_item_content_name cur_hand">填空题</a>
+                    <a id="question_type_3" class="right_div_title_item_content_name cur_hand">简答题</a>
+                </div>
+            </div>
+        </div>
+        <div class="right_div_edit_exam" id="right_div_edit_exam" hidden>
+            <div class="right_div_title_item" id="block_div_total">
+                <div class="right_div_title_item_name" id="block_div_text">
+                    <strong>模块</strong>
+                </div>
+                <div class="right_div_title_item_content" id="block_item">
+                    <div class="exam_last_div" id="exam_last_div_1">
+                        <input class="right_div_title_item_content_new_exam" title="模块名称" id="block_add_input"
+                               hidden="hidden"/>
+                        <a class="right_div_title_item_content_exam cur_hand" id="block_add_btn"><strong>+</strong></a>
+                        <a class="right_div_title_item_content_exam cur_hand" id="block_edit_btn"><strong>E</strong></a>
+                    </div>
+                </div>
+            </div>
+            <hr style=" height:1px;border:none;border-top:1px solid #d7d7d7;margin-left: 20px;margin-right: 20px;"
+                id="block_line_total"/>
+            <div class="right_div_title_item" id="exam_big_div_total">
+                <div class="right_div_title_item_name" id="exam_big_div_text">
+                    <strong>大考点</strong>
+                </div>
+                <div class="right_div_title_item_content" id="exam_big">
+                    <div class="exam_last_div" id="exam_last_div_2">
+                        <input class="right_div_title_item_content_new_exam" title="大考点名称" id="exam_big_add_input"
+                               hidden/>
+                        <a class="right_div_title_item_content_exam cur_hand"
+                           id="exam_big_add_btn"><strong>+</strong></a>
+                        <a class="right_div_title_item_content_exam cur_hand" id="exam_big_edit_btn"><strong>E</strong></a>
+                    </div>
+                </div>
+            </div>
+            <hr style=" height:1px;border:none;border-top:1px solid #d7d7d7;margin-left: 20px;margin-right: 20px;"
+                id="exam_big_line_total"/>
+            <div class="right_div_title_item" id="exam_small_div_total">
+                <div class="right_div_title_item_name" id="exam_small_div_text">
+                    <strong>小考点</strong>
+                </div>
+                <div class="right_div_title_item_content" id="exam_small">
+                    <div class="exam_last_div" id="exam_last_div_3">
+                        <input class="right_div_title_item_content_new_exam" title="小考点名称" id="exam_small_add_input"
+                               hidden/>
+                        <a class="right_div_title_item_content_exam cur_hand" id="exam_small_add_btn"><strong>+</strong></a>
+                        <a class="right_div_title_item_content_exam cur_hand"
+                           id="exam_small_edit_btn"><strong>E</strong></a>
+                    </div>
+                </div>
+            </div>
+            <hr style=" height:1px;border:none;border-top:1px solid #d7d7d7;margin-left: 20px;margin-right: 20px;"
+                id="exam_small_line_total"/>
+            <div class="right_div_title_item" id="exam_small_small_div_total">
+                <div class="right_div_title_item_name" id="exam_small_small_div_text">
+                    <strong>题型</strong>
+                </div>
+                <div class="right_div_title_item_content" id="exam_smallsmall">
+                    <div class="exam_last_div" id="exam_last_div_4">
+                        <input class="right_div_title_item_content_new_exam" title="题型名称"
+                               id="exam_small_small_add_input" hidden/>
+                        <a class="right_div_title_item_content_exam cur_hand"
+                           id="exam_small_small_add_btn"><strong>+</strong></a>
+                        <a class="right_div_title_item_content_exam cur_hand"
+                           id="exam_small_small_edit_btn"><strong>E</strong></a>
+                    </div>
+                </div>
+            </div>
+            <hr style=" height:1px;border:none;border-top:1px solid #d7d7d7;margin-left: 20px;margin-right: 20px;"
+                id="exam_small_small_line_total"/>
+            <div class="right_div_title_item">
+                <div class="submit_exam cur_hand" id="submit_exam">
+                    <strong>提交</strong>
+                </div>
+                <div class="submit_video cur_hand" id="setting_video">
+                    <strong>设置视频</strong>
+                </div>
+            </div>
+        </div>
+        <div class="questions-content" id="questions-content"></div>
+        <table id="question_table" hidden>
+            <tr>
+                <td class="question_input_item_title">【题目】</td>
+                <td colSpan=4>
+                    <script name="question_input" id="question_input"
+                            style="width:740px;height:100px;"></script>
+                </td>
+            </tr>
+            <tr id="selsection_tr">
+                <td class="question_input_item_title">【选项】</td>
+                <td colSpan=1>
+                    <script name="select_a_input" id="select_a_input"
+                            style="width:180px;height:100px;"></script>
+                </td>
+                <td colSpan=1>
+                    <script name="select_b_input" id="select_b_input"
+                            style="width:180px;height:100px;"></script>
+                </td>
+                <td colSpan=1>
+                    <script name="select_c_input" id="select_c_input"
+                            style="width:180px;height:100px;"></script>
+                </td>
+                <td colSpan=1>
+                    <script name="select_d_input" id="select_d_input"
+                            style="width:180px;height:100px;"></script>
+                </td>
+            </tr>
+            <tr id="fillin_answer_tr">
+                <td class="question_input_item_title">【答案】</td>
+                <td colSpan=4>
+                    <script name="answer_input" id="answer_input"
+                            style="width:740px;height:100px;"></script>
+                </td>
+            </tr>
+            <tr id="choice_tr">
+                <td class="question_input_item_title">【答案】</td>
+                <td colSpan=1 style="text-align: center;height: 50px;border: solid lightgrey 1px;">
+                    <label class="cur_hand"><input name="Fruit" type="checkbox" value=""
+                                                   id="select_a_check"/>A </label>
+                </td>
+                <td colSpan=1 style="text-align: center;height: 50px;border: solid lightgrey 1px;">
+                    <label class="cur_hand"><input name="Fruit" type="checkbox" value=""
+                                                   id="select_b_check"/>B </label>
+                </td>
+                <td colSpan=1 style="text-align: center;height: 50px;border: solid lightgrey 1px;">
+                    <label class="cur_hand"><input name="Fruit" type="checkbox" value=""
+                                                   id="select_c_check"/>C </label>
+                </td>
+                <td colSpan=1 style="text-align: center;height: 50px;border: solid lightgrey 1px;">
+                    <label class="cur_hand"><input name="Fruit" type="checkbox" value=""
+                                                   id="select_d_check"/>D </label>
+                </td>
+            </tr>
+            <tr>
+                <td class="question_input_item_title">【解析】</td>
+                <td colSpan=4>
+                    <script name="analyse_input" id="analyse_input"
+                            style="width:740px;height:100px;"></script>
+                </td>
+            </tr>
+            <tr>
+                <td class="question_input_item_title">【解答】</td>
+                <td colSpan=4>
+                    <script name="solution_input" id="solution_input"
+                            style="width:740px;height:100px;"></script>
+                </td>
+            </tr>
+        </table>
+        <div class="submit_bottom" id="question_table_bottom" hidden>
+            <div class="cur_hand inline-block-style">
+                <div class="question_bottom_block_1">
+                    <img src="./image/submit_white.png" class="question_edit_img"/>
+                </div>
+                <div class="question_bottom_block_2">
+                    <a class="question_edit_text white_on_deep" id="question_bottom_submit">
+                        <strong>提交</strong>
+                    </a>
+                </div>
+            </div>
+            <div class="cur_hand inline-block-style">
+                <div class="question_bottom_block_1">
+                    <img src="./image/question_back_white.png" class="question_edit_img"/>
+                </div>
+                <div class="question_bottom_block_2">
+                    <a class="question_edit_text white_on_deep" id="question_bottom_back">
+                        <strong>返回</strong>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="video_select_div" hidden id="video_select_div">
+            <script name="video_select" id="video_select"
+                    style="width:100%;height:100%;"></script>
+        </div>
+        <table id="class_table" hidden>
+            <tr>
+                <td class="question_input_item_title">【班级名称】</td>
+                <td colSpan=4>
+                    <div class="class_table_name" contenteditable="true" id="class_table_name"></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="question_input_item_title">【已选学生】</td>
+                <td colSpan=4>
+                    <div class="class_table_student" id="selected_student">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="question_input_item_title">【学生名单】</td>
+                <td colSpan=4>
+                    <div class="class_table_student" id="all_student"></div>
+                </td>
+            </tr>
+        </table>
+        <div class="submit_bottom" id="class_table_bottom" hidden>
+            <div class="cur_hand inline-block-style">
+                <div class="question_bottom_block_1">
+                    <img src="./image/submit_white.png" class="question_edit_img"/>
+                </div>
+                <div class="question_bottom_block_2">
+                    <a class="question_edit_text white_on_deep" id="class_table_submit">
+                        <strong>提交</strong>
+                    </a>
+                </div>
+            </div>
+            <div class="cur_hand inline-block-style">
+                <div class="question_bottom_block_1">
+                    <img src="./image/question_delete_white.png" class="question_edit_img"/>
+                </div>
+                <div class="question_bottom_block_2">
+                    <a class="question_edit_text white_on_deep" id="class_table_delete">
+                        <strong>删除</strong>
+                    </a>
+                </div>
+            </div>
+            <div class="cur_hand inline-block-style">
+                <div class="question_bottom_block_1">
+                    <img src="./image/question_back_white.png" class="question_edit_img"/>
+                </div>
+                <div class="question_bottom_block_2">
+                    <a class="question_edit_text white_on_deep" id="class_table_back">
+                        <strong>返回</strong>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<img src="./image/to_top.png" id="to_top" class="to_top cur_hand" hidden/>
+<div class="loading-spinner" id="loading-spinner">
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+</div>
+<script type="text/javascript" src="./js/jquery-1.11.1.min_044d0927.js"></script>
+<script type="application/javascript" src="./js/common.js?1.0.4"></script>
+<script src="./js/jquery.cookie.js" type="text/javascript"></script>
+<script src="./js/jquery.treeview.js" type="text/javascript"></script>
+<script src="./js/jquery.treeview.edit.js" type="text/javascript"></script>
+<script type="application/javascript" src="./js/questions.js?1.1.1"></script>
+</html>

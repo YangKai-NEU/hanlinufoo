@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <link href="../image/logo.png.ico" rel="shortcut icon"/>
+    <link rel="stylesheet" href="./css/style.css?1.0"/>
+    <!-- ueditor -->
+    <script type="text/javascript" charset="utf-8" src="../ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../ueditor/ueditor.all.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../ueditor/lang/zh-cn/zh-cn.js"></script>
+
+    <script type="text/javascript" charset="utf-8" src="../ueditor/kityformula-plugin/addKityFormulaDialog.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../ueditor/kityformula-plugin/getKfContent.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../ueditor/kityformula-plugin/defaultFilterFix.js"></script>
+</head>
+<body>
+<div class="top">
+    <div class="top-block">
+        <!--右侧导航栏-->
+        <div id="m-exit" class="top-block-right cur-hand mouse-on-red-off-white">退出系统</div>
+        <div id="m-home-page" class="top-block-right cur-hand mouse-on-green-off-white">网站首页</div>
+        <!--左侧导航栏-->
+        <!--<div id="basic-config" class="top-block-left cur-hand mouse-on-green-off-white">基本设置</div>-->
+        <!--<div id="manager-cache" class="top-block-left cur-hand mouse-on-green-off-white">缓存管理</div>-->
+    </div>
+</div>
+<div class="top-block">
+    <div class="left">
+        <div id="teacher-add-question" class="left-item cur-hand">发布试题</div>
+        <div id="teacher-manage-question" class="left-item cur-hand">管理试题</div>
+        <div id="teacher-add-exam" class="left-item cur-hand">生成试卷</div>
+        <div id="teacher-manage-exam" class="left-item cur-hand">管理试卷</div>
+        <div id="teacher-manage-classes" class="left-item cur-hand">我的班级</div>
+        <div id="teacher-manage-account" class="left-item cur-hand">账户管理</div>
+    </div>
+    <div class="main">
+        <div class="main-top">
+            上传试题
+        </div>
+        <div class="main-content">
+            <!--            <form name="form" id="form" ENCTYPE="multipart/form-data" action="../action/upload.class.php?action=config" method="post">-->
+
+            <table style="border: 1px solid #B7AEB4;width:100%;font-size:14px; margin-top:5px;border-collapse:separate; border-spacing:10px;"
+                   cellspacing="10"
+                   cellpadding="0">
+                <tr style="margin-top: 50px;height:35px">
+                    <td style="width:30%; text-align: center;height: 35px; line-height: 35px;background: dodgerblue;color: white;">
+                        所属年级
+                    </td>
+                    <td style="width:70%; height: 35px; line-height: 35px;">
+                        <select class='grade' id='grade' name='grade' onchange="get_gread_item()"
+                                style="height: 35px;width: 100%; line-height: 30px;float: right;text-align: center;border: solid 1px;">
+                        </select>
+                    </td>
+                </tr>
+                <tr valign="top" style="margin-top: 20px;height:35px;">
+                    <td style="width:30%; text-align: center;height: 35px; line-height: 35px;background: dodgerblue;color: white;">
+                        学期名称
+                    </td>
+                    <td style="width:70%;">
+                        <select class='grade_item' id='grade_item' name='grade_item' onchange="get_chapter()"
+                                style="height: 35px;width: 100%; line-height: 30px;float: right;text-align: center;border: solid 1px;">
+                        </select>
+                    </td>
+                </tr>
+                <tr style="margin-top: 50px;height:35px;">
+                    <td style="width:30%; text-align: center;height: 35px; line-height: 35px;background: dodgerblue;color: white;">
+                        所属科目
+                    </td>
+                    <td style="width:70%; text-align: center;height: 35px; line-height: 35px;">
+                        <select class='subject' id='subject' name='subject' onchange="get_chapter()"
+                                style="height: 35px;width: 100%; line-height: 30px;float: right;text-align: center;border: solid 1px;">
+                        </select>
+                    </td>
+                </tr>
+                <tr valign="top" style="margin-top: 20px;height:35px;">
+                    <td style="width:30%; text-align: center;height: 35px; line-height: 35px;background: dodgerblue;color: white;">
+                        章目录名称
+                    </td>
+                    <td style="width:70%;">
+                        <select class='chapter' id='chapter' name='chapter' onchange="get_section_1()"
+                                style="height: 35px;width: 100%; line-height: 30px;float: right;text-align: center;border: solid 1px;">
+                        </select>
+                    </td>
+                </tr>
+                <tr valign="top" style="margin-top: 20px;height:35px;">
+                    <td style="width:30%; text-align: center;height: 35px; line-height: 35px;background: dodgerblue;color: white;">
+                        一二级节目录名称
+                    </td>
+                    <td style="width:70%;">
+                        <select class='chapter' id='section1' name='section1' onchange="get_section_2()"
+                                style="height: 35px;width: 370px; line-height: 30px;float: left;text-align: center;border: solid 1px;">
+                        </select>
+                        <select class='section' id='section2' name='section2' onchange="get_section_3()"
+                                style="height: 35px;width: 370px; line-height: 30px;margin-left:7px;text-align: center;border: solid 1px;">
+                        </select>
+                    </td>
+                </tr>
+                <tr valign="top" style="margin-top: 20px;height:35px;">
+                    <td style="width:30%; text-align: center;height: 35px; line-height: 35px;background: dodgerblue;color: white;">
+                        三四级节目录名称
+                    </td>
+                    <td style="width:70%;">
+                        <select class='chapter' id='section3' name='section3' onchange="get_section_4()"
+                                style="height: 35px;width: 370px; line-height: 30px;float: left;text-align: center;border: solid 1px;">
+                        </select>
+                        <select class='section' id='section4' name='section4'
+                                style="height: 35px;width: 370px; line-height: 30px;margin-left:7px;text-align: center;border: solid 1px;">
+                        </select>
+                    </td>
+                </tr>
+                <tr valign="top" style="margin-top: 20px;height:35px;">
+                    <td style="width:30%; text-align: center;height: 35px; line-height: 35px;background: dodgerblue;color: white;">
+                        题型名称
+                    </td>
+                    <td style="width:70%;">
+                        <select class='section' id='exam' name='exam'
+                                style="height: 35px;width: 100%; line-height: 30px;float: right;text-align: center;border: solid 1px;">
+                        </select>
+                    </td>
+                </tr>
+                <tr valign="top" style="margin-top: 20px;height:35px">
+                    <td style="width:30%; text-align: center;height: 35px; line-height: 35px;background: dodgerblue;color: white;">
+                        上传题型
+                    </td>
+                    <td style="width:70%; text-align: center;height: 35px; line-height: 35px;">
+                        <select class='type' id='type' name='type' onchange="update_question_type(this.value)"
+                                style="height: 35px;width: 100%; line-height: 30px;float: right;text-align: center;border: solid 1px;">
+                            <option value='1'>选择题</option>
+                            <option value='2'>填空题</option>
+                            <option value='3'>问答题</option>
+                        </select>
+
+                    </td>
+                </tr>
+            </table>
+            <table style="border: 1px solid #B7AEB4;width:100%;font-size:14px; margin-top:5px;border-collapse:separate; border-spacing:10px;"
+                   cellspacing="10"
+                   cellpadding="0">
+                <tr valign="top" style="margin-top: 20px;height:35px;">
+                    <td style="width:30%; text-align: center;height: 35px; line-height: 200px;background: dodgerblue;color: white;">
+                        题目说明
+                    </td>
+                    <td style="width:70%;">
+                        <script name="question" id="question" style="width:100%;height:200px;"></script>
+                    </td>
+                </tr>
+                <tr valign="top" style="margin-top: 20px;height:35px;" id="layout_a">
+                    <td style="width:30%; text-align: center;height: 35px; line-height: 200px;background: dodgerblue;color: white;">
+                        选项A
+                    </td>
+                    <td style="width:70%;">
+                        <textarea id="select_a" name="select_a" style="height: 200px;width: 100%;"></textarea>
+
+                    </td>
+                </tr>
+                <tr valign="top" style="margin-top: 20px;height:35px;" id="layout_b">
+                    <td style="width:30%; text-align: center;height: 35px; line-height: 200px;background: dodgerblue;color: white;">
+                        选项B
+                    </td>
+                    <td style="width:70%;">
+                            <textarea
+                                    style="height: 200px;width:100%;" id="select_b" name="select_b"></textarea>
+
+                    </td>
+                </tr>
+                <tr valign="top" style="margin-top: 20px;height:35px;" id="layout_c">
+                    <td style="width:30%; text-align: center;height: 35px; line-height: 200px;background: dodgerblue;color: white;">
+                        选项C
+                    </td>
+                    <td style="width:70%;">
+                            <textarea
+                                    style="height: 200px;width: 100%;" id="select_c" name="select_c"></textarea>
+                    </td>
+                </tr>
+                <tr valign="top" style="margin-top: 20px;height:35px;" id="layout_d">
+                    <td style="width:30%; text-align: center;height: 35px; line-height: 200px;background: dodgerblue;color: white;">
+                        选项D
+                    </td>
+                    <td style="width:70%;">
+                            <textarea
+                                    style="height: 200px;width: 100%;" id="select_d" name="select_d"></textarea>
+
+                    </td>
+                </tr>
+                <tr valign="top" style="margin-top: 20px;height:35px;">
+                    <td style="width:30%; text-align: center;height: 35px; line-height: 200px;background: dodgerblue;color: white;">
+                        试题答案
+                    </td>
+                    <td style="width:70%;">
+                            <textarea
+                                    style="height: 200px;width: 100%;" id="answer" name="answer"></textarea>
+                    </td>
+                </tr>
+                <tr valign="top" style="margin-top: 20px;height:35px;">
+                    <td style="width:30%; text-align: center;height: 35px; line-height: 200px;background: dodgerblue;color: white;">
+                        试题分析
+                    </td>
+                    <td style="width:70%;">
+                            <textarea
+                                    style="height: 200px;width: 100%;" id="analyse" name="analyse"></textarea>
+
+                    </td>
+                </tr>
+                <tr valign="top" style="margin-top: 20px;height:35px;">
+                    <td style="width:30%; text-align: center;height: 35px; line-height: 200px;background: dodgerblue;color: white;">
+                        试题解答
+                    </td>
+                    <td style="width:70%;">
+                            <textarea
+                                    style="height: 200px;width: 100%;" id="solution" name="solution"></textarea>
+                    </td>
+                </tr>
+                <tr valign="top" style="margin-top: 20px;height:35px; display: none">
+                    <td style="width:30%; text-align: center;height: 35px; line-height: 35px;background: dodgerblue;color: white;">
+                        视频讲解
+                    </td>
+                    <td style="width:70%; text-align: center;height: 35px; line-height: 35px;border: solid 1px;background: #DDDDDD;">
+                        <input type="file" name="file_video" accept="video/*" id="file_video" class="file" value=""
+                               style="width: 0%;height: 0%; visibility: hidden" onchange="set_video()"/>
+                        <div style="background: #DDDDDD; display: inline-block; width: 99%;" class="cur-hand"
+                             id="video-btn"><strong><a id="video_name">选择视频文件</a></strong></div>
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" id="submit_btn"
+                   style="width: 100%; height: 35px;background: dodgerblue;color: white;border: none;margin-top: 10px;"
+                   class="cur-hand"
+                   value="提交"/>
+            <!--            </form>-->
+        </div>
+    </div>
+</div>
+</body>
+<div class="loading-spinner" id="loading-spinner">
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+</div>
+
+<script type="application/javascript" src="js/jquery-1.11.1.min_044d0927.js"></script>
+<script src="js/common.js?1.2" type="text/javascript" charset="utf-8"></script>
+<script type="application/javascript" src="js/question.js?1.0"></script>
+</html>
